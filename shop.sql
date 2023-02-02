@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2023-01-19 15:27:55
+-- 生成日時: 2023-02-02 14:23:00
 -- サーバのバージョン： 10.4.27-MariaDB
 -- PHP のバージョン: 8.1.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- データベース: `shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `blog`
+--
+
+CREATE TABLE `blog` (
+  `code` int(11) NOT NULL,
+  `category` varchar(20) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `honbun` varchar(5000) NOT NULL,
+  `time` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- テーブルのデータのダンプ `blog`
+--
+
+INSERT INTO `blog` (`code`, `category`, `title`, `img`, `honbun`, `time`) VALUES
+(1, '', '<h1>海大好きです</h1>', 'DSC03758.JPG', '<h1>冬の海はどうか</h1>\r\n<h2>めっちゃ寒い</h2>\r\n<img width=\'50%\' class=\'bunimg\' src=\'img/DSC03758.JPG\'>', '2023-02-02'),
+(2, '', '<h1>サーフィンだー</h1>', 'サーフィンアイコン1.png', '<h1>サーフィンいこーね</h1>\r\n<img width=\'50%\' class=\'bunimg\' src=\'img/サーフィンアイコン1.png\'>\r\n\r\n<p>イエーイ</p>', '2023-02-02');
 
 -- --------------------------------------------------------
 
@@ -65,6 +88,30 @@ CREATE TABLE `favorite` (
 INSERT INTO `favorite` (`customer_id`, `product_id`) VALUES
 (4, 2),
 (4, 5);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `img`
+--
+
+CREATE TABLE `img` (
+  `code` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- テーブルのデータのダンプ `img`
+--
+
+INSERT INTO `img` (`code`, `name`) VALUES
+(6, 'PXL_20230111_002206664.MP.jpg'),
+(7, 'DSC03758.JPG'),
+(8, 'DSC03766.JPG'),
+(9, 'DSC03758.JPG'),
+(10, 'DSC03758.JPG'),
+(11, 'PXL_20230111_002206664.MP.jpg'),
+(12, 'サーフィンアイコン1.png');
 
 -- --------------------------------------------------------
 
@@ -156,6 +203,12 @@ INSERT INTO `purchase_detail` (`purchase_id`, `product_id`, `count`) VALUES
 --
 
 --
+-- テーブルのインデックス `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`code`);
+
+--
 -- テーブルのインデックス `customer`
 --
 ALTER TABLE `customer`
@@ -168,6 +221,12 @@ ALTER TABLE `customer`
 ALTER TABLE `favorite`
   ADD PRIMARY KEY (`customer_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- テーブルのインデックス `img`
+--
+ALTER TABLE `img`
+  ADD PRIMARY KEY (`code`);
 
 --
 -- テーブルのインデックス `product`
@@ -194,10 +253,22 @@ ALTER TABLE `purchase_detail`
 --
 
 --
+-- テーブルの AUTO_INCREMENT `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- テーブルの AUTO_INCREMENT `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- テーブルの AUTO_INCREMENT `img`
+--
+ALTER TABLE `img`
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- テーブルの AUTO_INCREMENT `product`
